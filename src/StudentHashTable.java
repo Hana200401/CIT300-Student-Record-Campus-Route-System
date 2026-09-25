@@ -1,26 +1,60 @@
-import java.util.HashMap;
-import java.util.Map;
-
 public class StudentHashTable {
-    private final Map<Integer, Student> students = new HashMap<>();
+    private Student[] table;
+    private int capacity;
 
-    public void put(Student student) {
-        students.put(student.getId(), student);
+    public StudentHashTable(int capacity) {
+        this.capacity = capacity;
+        this.table = new Student[capacity];
     }
 
-    public Student get(int id) {
-        return students.get(id);
+    private int hashFunction(int id) {
+        return id % capacity;
     }
 
-    public Student remove(int id) {
-        return students.remove(id);
+    public void insert(Student s) {
+        int index = hashFunction(s.studentId);
+        int startIndex = index;
+
+        while (table[index] != null) {
+            if (table[index].studentId == s.studentId) {
+                System.out.println("Duplicate ID in Hash Table!");
+                return;
+            }
+            index = (index + 1) % capacity;
+            if (index == startIndex) {
+                System.out.println("Hash table is full!");
+                return;
+            }
+        }
+        table[index] = s;
     }
 
-    public boolean contains(int id) {
-        return students.containsKey(id);
+    public Student search(int id) {
+        int index = hashFunction(id);
+        int startIndex = index;
+
+        while (table[index] != null) {
+            if (table[index].studentId == id) {
+                return table[index];
+            }
+            index = (index + 1) % capacity;
+            if (index == startIndex) break;
+        }
+        return null;
     }
 
-    public int size() {
-        return students.size();
+    public boolean delete(int id) {
+        int index = hashFunction(id);
+        int startIndex = index;
+
+        while (table[index] != null) {
+            if (table[index].studentId == id) {
+                table[index] = null;
+                return true;
+            }
+            index = (index + 1) % capacity;
+            if (index == startIndex) break;
+        }
+        return false;
     }
 }
