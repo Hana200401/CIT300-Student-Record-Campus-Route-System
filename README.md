@@ -1,25 +1,31 @@
-# CIT300 Project
+# CIT300 - University Student Record and Campus Route Management System
 
-A small Java project demonstrating common data structures in a student-services context.
+## Group Members
 
-## Structure
+| Name | Student ID | Responsibility | Individual Contribution |
+|------|-----------|----------------|------------------------|
+| AMF. Hana | 23DA2-0674 | Linked List & Student Records | Implemented Student.java and StudentLinkedList.java |
+| IL. Asjatha | 23DA2-1088 | Stack & Queue | Implemented ActionStack.java and ServiceQueue.java |
+| AM. Safra Julla | 23DA2-0527 | BST/AVL & Hashing | Implemented BST.java and StudentHashTable.java |
+| MA. Aysha Banu | 23DA2-0866 | Graph & BFS/DFS | Implemented CampusGraph.java |
+| All Members | - | Integration, Testing, Documentation | Combined all components in Main.java, tested all operations |
 
-- `src/Student.java` - Student model
-- `src/StudentLinkedList.java` - Linked list of students
-- `src/ActionStack.java` - LIFO action history
-- `src/ServiceQueue.java` - FIFO student service queue
-- `src/BST.java` - Binary search tree keyed by student ID
-- `src/StudentHashTable.java` - Student lookup table
-- `src/CampusGraph.java` - Campus locations and breadth-first traversal
-- `src/Main.java` - Runnable demonstration
+## Project Description
 
-## Compile and run
+This Java console application manages university student records and represents campus locations as a graph. It demonstrates practical use of Linked Lists, Stacks, Queues, BST, Hashing, and Graphs.
 
-From the project root:
+## Features
 
-```text
-javac -d out src/*.java
-java -cp out Main
-```
+1. Add/Update/Delete/Search/Display student records using Linked List
+2. Recent actions history using Stack
+3. Service request management using Queue
+4. Student search using BST and Hashing
+5. Campus location and connection management using Graph
+6. BFS and DFS traversal
 
-No external libraries are required. Java 8 or newer is sufficient.
+## How to Run
+
+```bash
+cd src
+javac *.java
+java Main
