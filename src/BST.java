@@ -1,53 +1,65 @@
 public class BST {
-    private static class Node {
-        private final Student student;
-        private Node left;
-        private Node right;
+    class Node {
+        Student student;
+        Node left, right;
 
-        private Node(Student student) {
-            this.student = student;
+        Node(Student s) {
+            this.student = s;
+            left = right = null;
         }
     }
 
     private Node root;
 
-    public void insert(Student student) {
-        root = insert(root, student);
+    public BST() {
+        root = null;
     }
 
-    private Node insert(Node node, Student student) {
-        if (node == null) {
-            return new Node(student);
+    public void insert(Student s) {
+        root = insertRec(root, s);
+    }
+
+    private Node insertRec(Node root, Student s) {
+        if (root == null) {
+            root = new Node(s);
+            return root;
         }
-        if (student.getId() < node.student.getId()) {
-            node.left = insert(node.left, student);
-        } else if (student.getId() > node.student.getId()) {
-            node.right = insert(node.right, student);
+        if (s.studentId < root.student.studentId) {
+            root.left = insertRec(root.left, s);
+        } else if (s.studentId > root.student.studentId) {
+            root.right = insertRec(root.right, s);
         }
-        return node;
+        return root;
     }
 
     public Student search(int id) {
-        Node current = root;
-        while (current != null) {
-            if (id == current.student.getId()) {
-                return current.student;
-            }
-            current = id < current.student.getId() ? current.left : current.right;
+        return searchRec(root, id);
+    }
+
+    private Student searchRec(Node root, int id) {
+        if (root == null || root.student.studentId == id) {
+            return root == null ? null : root.student;
         }
-        return null;
+        if (id < root.student.studentId) {
+            return searchRec(root.left, id);
+        }
+        return searchRec(root.right, id);
     }
 
-    public void printInOrder() {
-        printInOrder(root);
-    }
-
-    private void printInOrder(Node node) {
-        if (node == null) {
+    public void inorder() {
+        if (root == null) {
+            System.out.println("BST is empty.");
             return;
         }
-        printInOrder(node.left);
-        System.out.println(node.student);
-        printInOrder(node.right);
+        System.out.println("\n===== Students in BST (Sorted by ID) =====");
+        inorderRec(root);
+    }
+
+    private void inorderRec(Node root) {
+        if (root != null) {
+            inorderRec(root.left);
+            System.out.println(root.student);
+            inorderRec(root.right);
+        }
     }
 }
