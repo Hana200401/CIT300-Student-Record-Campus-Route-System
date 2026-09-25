@@ -1,28 +1,21 @@
 public class Student {
-    private final int id;
-    private final String name;
-    private final String major;
+    public int studentId;
+    public String name;
+    public String programme;
+    public double marks;
+    public Student next;
 
-    public Student(int id, String name, String major) {
-        this.id = id;
+    public Student(int studentId, String name, String programme, double marks) {
+        this.studentId = studentId;
         this.name = name;
-        this.major = major;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getMajor() {
-        return major;
+        this.programme = programme;
+        this.marks = marks;
+        this.next = null;
     }
 
     @Override
     public String toString() {
-        return id + " - " + name + " (" + major + ")";
+        return "ID: " + studentId + " | Name: " + name + 
+               " | Programme: " + programme + " | Marks: " + marks;
     }
 }

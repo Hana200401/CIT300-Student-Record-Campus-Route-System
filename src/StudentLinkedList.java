@@ -1,63 +1,89 @@
 public class StudentLinkedList {
-    private static class Node {
-        private final Student student;
-        private Node next;
+    private Student head;
 
-        private Node(Student student) {
-            this.student = student;
-        }
+    public StudentLinkedList() {
+        head = null;
     }
 
-    private Node head;
-
-    public void add(Student student) {
-        Node newNode = new Node(student);
+    public boolean addStudent(Student s) {
+        if (searchStudent(s.studentId) != null) {
+            System.out.println("Error: Student ID " + s.studentId + " already exists!");
+            return false;
+        }
         if (head == null) {
-            head = newNode;
-            return;
+            head = s;
+        } else {
+            Student current = head;
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = s;
         }
-
-        Node current = head;
-        while (current.next != null) {
-            current = current.next;
-        }
-        current.next = newNode;
+        System.out.println("Student added successfully!");
+        return true;
     }
 
-    public Student findById(int id) {
-        Node current = head;
+    public Student searchStudent(int id) {
+        Student current = head;
         while (current != null) {
-            if (current.student.getId() == id) {
-                return current.student;
+            if (current.studentId == id) {
+                return current;
             }
             current = current.next;
         }
         return null;
     }
 
-    public boolean removeById(int id) {
-        Node previous = null;
-        Node current = head;
-        while (current != null) {
-            if (current.student.getId() == id) {
-                if (previous == null) {
-                    head = current.next;
-                } else {
-                    previous.next = current.next;
-                }
-                return true;
-            }
-            previous = current;
-            current = current.next;
+    public boolean updateStudent(int id, String name, String programme, double marks) {
+        Student s = searchStudent(id);
+        if (s == null) {
+            System.out.println("Error: Student ID " + id + " not found!");
+            return false;
         }
-        return false;
+        s.name = name;
+        s.programme = programme;
+        s.marks = marks;
+        System.out.println("Student updated successfully!");
+        return true;
     }
 
-    public void printAll() {
-        Node current = head;
-        while (current != null) {
-            System.out.println(current.student);
+    public boolean deleteStudent(int id) {
+        if (head == null) {
+            System.out.println("Error: List is empty!");
+            return false;
+        }
+        if (head.studentId == id) {
+            head = head.next;
+            System.out.println("Student deleted successfully!");
+            return true;
+        }
+        Student current = head;
+        while (current.next != null && current.next.studentId != id) {
             current = current.next;
         }
+        if (current.next == null) {
+            System.out.println("Error: Student ID " + id + " not found!");
+            return false;
+        }
+        current.next = current.next.next;
+        System.out.println("Student deleted successfully!");
+        return true;
+    }
+
+    public void displayAll() {
+        if (head == null) {
+            System.out.println("No student records found.");
+            return;
+        }
+        System.out.println("\n===== All Student Records =====");
+        Student current = head;
+        while (current != null) {
+            System.out.println(current);
+            current = current.next;
+        }
+    }
+
+    public Student getHead() {
+        return head;
     }
 }
