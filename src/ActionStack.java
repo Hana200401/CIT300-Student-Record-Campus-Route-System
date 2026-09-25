@@ -16,6 +16,7 @@ public class ActionStack {
         }
         stack[++top] = action;
     }
+
     public String pop() {
         if (isEmpty()) {
             System.out.println("Stack is empty!");
