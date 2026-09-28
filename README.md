@@ -1,3 +1,4 @@
+
 # CIT300 - University Student Record and Campus Route Management System
 
 ## Group Members
@@ -29,3 +30,7 @@ This Java console application manages university student records and represents 
 cd src
 javac *.java
 java Main
+
+## GitHub Repository
+
+https://github.com/Hana200401/CIT300-Student-Record-Campus-Route-System
