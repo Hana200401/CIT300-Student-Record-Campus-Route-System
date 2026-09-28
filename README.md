@@ -29,8 +29,8 @@ This Java console application manages university student records and represents 
 cd src
 javac *.java
 java Main
-####
-Data Structures Used
+```
+#### Data Structures Used
 
 Linked List: Student records storage
 
@@ -44,6 +44,5 @@ Hash Table: Fast student search
 
 Graph: Campus network (Adjacency List)
 
-###
-GitHub Repository
+### GitHub Repository
 https://github.com/Hana200401/CIT300-Student-Record-Campus-Route-System
